@@ -3,37 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Email Signup</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 500px;
-      margin: 80px auto;
-      padding: 20px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    input {
-      padding: 12px;
-      font-size: 16px;
-    }
-
-    button {
-      padding: 12px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    #message {
-      margin-top: 15px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
@@ -56,48 +29,11 @@
 
   <p id="message"></p>
 
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script>
-    const SUPABASE_URL = "https://opquqeiyfrspsyemgahm.supabase.co";
-    const SUPABASE_ANON_KEY = "sb_publishable_tQfcvV_Dy_zmyuaOGFUZNQ_eS5sH4ga";
-
-    const supabaseClient = supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY
-    );
-
-    const form = document.getElementById("email-form");
-    const emailInput = document.getElementById("email");
-    const message = document.getElementById("message");
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      const email = emailInput.value.trim();
-
-      const { error } = await supabaseClient
-        .from("email_signups")
-        .insert([
-          { email: email }
-        ]);
-
-      if (error) {
-        console.error(error);
-
-        if (error.code === "23505") {
-          message.textContent = "That email is already signed up.";
-        } else {
-          message.textContent = "Something went wrong. Please try again.";
-        }
-
-        return;
-      }
-
-      message.textContent = "Thanks for signing up!";
-      emailInput.value = "";
-    });
-  </script>
+  <!-- Our JavaScript -->
+  <script src="scripts.js"></script>
 
 </body>
 </html>
