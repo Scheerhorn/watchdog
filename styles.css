@@ -26,6 +26,10 @@ button {
   margin-top: 15px;
 }
 
+.issue-style {
+  color: #e68a00;
+}
+
 .support-button {
     display: inline-block;
     padding: 12px 24px;
